@@ -1,0 +1,14 @@
+{
+  "name": "test-ssfw",
+  "version": "1.0.0",
+  "description": "Aplicacion para testear las funciones pricipales de la aplicacion.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Ezequiel Sanson - FrontEnd Developer",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.4.2"
+  }
+}
