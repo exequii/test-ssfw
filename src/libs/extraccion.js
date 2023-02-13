@@ -1,4 +1,4 @@
-const {Vars} = require("../libs/globals")
+const {Vars, CheckDevice} = require("./utils/globals")
 
 var Extraccion = {
 
@@ -25,7 +25,6 @@ var Extraccion = {
 	},
 
 	setExtraccion : function(stateData){
-		console.log("[INFO] inicio setExtraccion")
 		var importe = Vars.get("importe");
 		var ticket = Vars.get("ticket",false);
 		var indice = Vars.get("cta_indice",0);
@@ -35,7 +34,6 @@ var Extraccion = {
 			var cuentas = Vars.get("cuentas");
 		}
 		var moneda = Vars.get("moneda","pesos");
-
 		var opcode = {
 			"pesos":{
 				"pesos":{
@@ -60,15 +58,10 @@ var Extraccion = {
 		}
 		var origen = (cuentas[indice].moneda == "u$s")?"dolares":"pesos";
 		stateData.properties.opcode  = opcode[origen][moneda][ticket];
-
-		// stateData.properties.opcode  = opcode[ticket];
 		stateData.properties.buffer_B = cuentas[indice].t;
 		stateData.properties.buffer_C = cuentas[indice].n;
-		//console.log(importe)
 		var imp_formateado = Extraccion.formatoAmountBuffer(importe.toString(), 12);
-		//console.log(imp_formateado)
 		stateData.properties.amount_buffer = imp_formateado; 
-		console.log("[INFO] fin setExtraccion")
         return stateData;
 	},
 
@@ -76,7 +69,7 @@ var Extraccion = {
 		console.log("[INFO] inicio setExtraccionRias")
 		var importe = Vars.get("importe");
 		var imprime = Vars.get("ticket","false");
-		var indice = Vars.get("tipo_cta");
+		var indice = Vars.get("tipo_cta",0);
 
 		var opcode = {
 			"true":[
@@ -99,12 +92,13 @@ var Extraccion = {
 		console.log("[INFO] fin setExtraccionRias") 
 		//stateData.properties.buffer_B = tipo[indice];
 		//stateData.properties.buffer_C = "0000000000000000000";
+		return stateData
 	},
 
 	setExtraccionLink : function(stateData){
 		console.log("[INFO] inicio setExtraccionLink")
 		var importe = Vars.get("importe");
-		var indice = Vars.get("tipo_cta_link");
+		var indice = Vars.get("tipo_cta_link",0);
 
 		var opcode = [
 			"ADC     ",
@@ -122,13 +116,14 @@ var Extraccion = {
 		stateData.properties.buffer_B = tipo[indice];
 		stateData.properties.buffer_C = "0000000000000000000";
 		console.log("[INFO] fin setExtraccionLink")
+		return stateData
 	},
 
 	setExtraccionTc : function(stateData){
 		console.log("[INFO] inicio setExtraccionTc")
 		var ticket = Vars.get("ticket",false);
 		var importe = Vars.get("importe");
-		var indice = Vars.get("tipo_cta");
+		var indice = Vars.get("tipo_cta",0);
 		var cuotas = Vars.get("cuotas",1)
 		var idioma = Vars.get("idioma","ESP");
 
@@ -189,29 +184,28 @@ var Extraccion = {
 		var imp_formateado = Extraccion.formatoAmountBuffer(importe.toString(), 12);
 		stateData.properties.amount_buffer = imp_formateado; 
 		console.log("[INFO] fin setExtraccionTc")
-
+		return stateData
 	},
 
 	setExtraccionCardless : function(stateData){
-		console.log("[INFO] inicio setExtraccionCardless")
-
 		var importe = Vars.get("importe");
-		var tipo = Vars.get('doc_tipo')
+		var tipo = Vars.get('doc_tipo',0)
 
 		var opcode = [
-		    "FACCC   ",
-		    "FBCCC   ",
-		    "FCCCC   ",
-		    "FHCCC   ",
-		    "FICCC   "
+			"FACCC   ",
+			"FBCCC   ",
+			"FCCCC   ",
+			"FHCCC   ",
+			"FICCC   "
 		];
 
 
-		stateData.properties.opcode  = opcode[tipo];
+		
 		var imp_formateado = Extraccion.formatoAmountBuffer(importe.toString(), 12);
 		stateData.properties.amount_buffer = imp_formateado; 
 		stateData.properties.buffer_C = Vars.get("doc");
-		console.log("[INFO] fin setExtraccionCardless")
+		stateData.properties.opcode  = opcode[tipo];
+		return stateData
 	},
 
 	setExtraccionANSES : function(stateData){
@@ -235,12 +229,13 @@ var Extraccion = {
 		var imp_formateado = Extraccion.formatoAmountBuffer(importe.toString(), 12);
 		stateData.properties.amount_buffer = imp_formateado; 
 		console.log("[INFO] inicio setExtraccionAnses")
+		return stateData
 	},
 
 	setFastCash : function(stateData){
 		var importe = Vars.get("importe");
 		var cuentas = Vars.get("cuentas",[])
-		var indice = Vars.get("indice");
+		var indice = Vars.get("cta_indice");
 		var tipo_menu = Vars.get("tipo_menu")
 		var imp_formateado = Extraccion.formatoAmountBuffer(importe.toString(), 12);
 		if(tipo_menu === "TC" || tipo_menu === "LINK" || tipo_menu === "RIAS" || tipo_menu === "ANSES" || tipo_menu === "BIOMETRIA"){
@@ -291,6 +286,7 @@ var Extraccion = {
 		//console.log(imp_formateado)
 		stateData.properties.amount_buffer = imp_formateado; 
 		console.log("[INFO] fin setExtraccionBio")
+		return stateData
 	},
 } 
 
