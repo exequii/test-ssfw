@@ -1,3 +1,6 @@
+const { ndctools } = require("./utils/globals");
+const {Vars} = require("./utils/globals")
+
 var Depositos = {
 
     denomBloq: {},
@@ -52,11 +55,12 @@ var Depositos = {
         stateData.properties.buffer_B = "C" + cuenta.t;
         stateData.properties.buffer_C = cuenta.n;
         stateData.properties.opcode = "D A G   ";
+        return stateData;
         events.nextA1O = function(){
 
             //Json with the account inside
             try{
-                var titularidad = JSON.parse(ndctools.retrieveScreen(48, 75));
+                var titularidad = JSON.parse(ndctools.retrieveScreen(48, 75, Vars.get("permite")));
             }catch(error){
                 console.error("[ERROR] de Parseo de Datos de Titularidad")
                 Vars.set("msj_error", "No es posible realizar la operación en este momento. Por favor intente mas tarde.");
@@ -110,7 +114,7 @@ var Depositos = {
             stateData.properties.buffer_B = ( Vars.exists("send_track_2") && !Vars.get("send_track_2") ) ? "UO" :"U"
             stateData.properties.buffer_C = Vars.get("cbu");
         } else {
-            var tipo = Vars.get("tipo_cuenta");
+            var tipo = Vars.get("tipo_cuenta",0);
             tipos = [
                 // "22",//"Cuenta especial en dolares",
                 // "02",//"Cuenta corriente en dolares",
@@ -126,9 +130,9 @@ var Depositos = {
             stateData.properties.buffer_B = "C" + tipos[tipo];
             stateData.properties.buffer_C = Vars.get("cuenta","");
         }
-        stateData.properties.send_track_2 = Vars.exists("send_track_2") ? Vars.get("send_track_2") : false;
+        stateData.properties.send_track_2 = Vars.exists("send_track_2") ? Vars.get("send_track_2",false) : false;
         stateData.properties.opcode = "D A G   ";
-
+        return stateData;
         events.nextA1O = function(){
 
             //Json with the account inside
@@ -920,3 +924,5 @@ var Depositos = {
     }, //fin de cheques
 
 }
+
+module.exports = Depositos;

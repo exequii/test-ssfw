@@ -15,6 +15,9 @@ beforeEach(() => {
     return
 });
 
+//TESTEAR ESTAS FUNCIONES IMPLICA EL RETURN STATE DATA.
+//AGREGAR EN LOS INDICES EL DEFAULT VALUE EN 0 PORQUE POR EL MOMENTO NO LOS TOMA.
+
 test('Setear Extraccion TC - Tipo Cta 0 - 1 Cuota - Sin Ticket - Idioma ESP', () => {
     var stateData = {
         properties: {

@@ -15,6 +15,9 @@ beforeEach(() => {
     return
 });
 
+//TESTEAR ESTAS FUNCIONES IMPLICA EL RETURN STATE DATA.
+//AGREGAR EN LOS INDICES EL DEFAULT VALUE EN 0 PORQUE POR EL MOMENTO NO LOS TOMA.
+
 test('Setear FastCash - Cuenta Origen CA Pesos - No Imprime ticket - DEBITO DOMESTICA - $ $', () => {
     var stateData = {
         properties: {

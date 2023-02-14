@@ -15,6 +15,9 @@ beforeEach(() => {
     return
 });
 
+//TESTEAR ESTAS FUNCIONES IMPLICA EL RETURN STATE DATA.
+//AGREGAR EN LOS INDICES EL DEFAULT VALUE EN 0 PORQUE POR EL MOMENTO NO LOS TOMA.
+
 test('Setear Extraccion Biometria - Tipo Cta 01 - Sin Ticket - CC Pesos - Retira Pesos', () => {
     var stateData = {
         properties: {

@@ -57,5 +57,11 @@ const CheckDevice = {
     }
 }
 
+const ndctools = {
+    retrieveScreen: function (x, y,permite) {
+        return '{"titularidad": { "permite" : "'+permite+'"}}'
+    }
+}
 
-module.exports = {stateDataInicial, cuentas, Vars, CheckDevice, cuentas_dolares};
+
+module.exports = {stateDataInicial, cuentas, Vars, CheckDevice, cuentas_dolares, ndctools};

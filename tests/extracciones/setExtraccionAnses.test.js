@@ -15,6 +15,10 @@ beforeEach(() => {
     return
 });
 
+//TESTEAR ESTAS FUNCIONES IMPLICA EL RETURN STATE DATA.
+//AGREGAR EN LOS INDICES EL DEFAULT VALUE EN 0 PORQUE POR EL MOMENTO NO LOS TOMA.
+
+
 test('Setear Extraccion ANSES - $ $ - Imprime ticket', () => {
     var stateData = {
         properties: {
