@@ -54,11 +54,11 @@ test('Setear Extraccion Biometria - Tipo Cta 11 - Sin Ticket - CA Pesos - Retira
     expect(JSON.stringify(Extraccion.setExtraccionBiometria(stateDataInicial))).toBe(JSON.stringify(stateData));
 });
 
-test('Setear Extraccion Biometria - Tipo Cta 21 - Sin Ticket - CA Dolares - Retira Pesos', () => {
+test('Setear Extraccion Biometria - Tipo Cta 12 - Sin Ticket - CA Dolares - Retira Pesos', () => {
     var stateData = {
         properties: {
-            opcode: "ABC B D ",
-            buffer_B: "21",
+            opcode: "AGC B D ",
+            buffer_B: "12",
             buffer_C: "4520333322221114",
             amount_buffer: "000000010000",
         },
@@ -184,11 +184,11 @@ test('Setear Extraccion Biometria - Tipo Cta 11 - Con Ticket - CA Pesos - Retira
     expect(JSON.stringify(Extraccion.setExtraccionBiometria(stateDataInicial))).toBe(JSON.stringify(stateData));
 });
 
-test('Setear Extraccion Biometria - Tipo Cta 21 - Con Ticket - CA Dolares - Retira Pesos', () => {
+test('Setear Extraccion Biometria - Tipo Cta 12 - Con Ticket - CA Dolares - Retira Pesos', () => {
     var stateData = {
         properties: {
-            opcode: "ABC B C ",
-            buffer_B: "21",
+            opcode: "AGC B C ",
+            buffer_B: "12",
             buffer_C: "4520333322221114",
             amount_buffer: "000000010000",
         },

@@ -34,19 +34,19 @@ var Usuario = {
 
 	filtrarCuentas : function(cuentas){
 		return cuentas.filter(function(e) {
-		  		if ((e.e == "1" || e.e == "3" || e.e == "4") && (e.t == "01" || e.t == "11" || e.t == "02" || e.t == "12" || e.t == "21" || e.t == "22")){
-		  			return true
-		  		}
-		  		return false
+			if ((e.e == "1" || e.e == "3" || e.e == "4") && (e.t == "01" || e.t == "11" || e.t == "02" || e.t == "12" || e.t == "21" || e.t == "22")){
+				return true
+			}
+		return false
 		})
 	},
 
 	filtrarCuentasPorTipo : function(cuentas,tipo){
 		return cuentas.filter(function(e) {
-		  		if ((e.e == "1" || e.e == "3" || e.e == "4") && (e.t==tipo)){
-		  			return true
-		  		}
-		  		return false
+		if ((e.e == "1" || e.e == "3" || e.e == "4") && (e.t==tipo)){
+			return true
+		}
+			return false
 		})
 	},
 
@@ -531,3 +531,5 @@ var Usuario = {
 	
 	}
 }
+
+module.exports = Usuario;

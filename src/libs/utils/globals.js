@@ -11,11 +11,13 @@ const cuentas = [
     {t: "01", n: "4520333322221111",moneda: "$"},   //CC EN PESOS
     {t: "11", n: "4520333322221112",moneda: "$"},   //CA EN PESOS
     {t: "02", n: "4444333322221111",moneda: "u$s"}, //CC EN DOLARES
-    {t: "21", n: "4520333322221114",moneda: "u$s"}, //CA EN DOLARES
+    {t: "12", n: "4520333322221114",moneda: "u$s"}, //CA EN DOLARES
     {t: "01", n: "5424333322221115",moneda: "$"},   //CC EN PESOS
     {t: "02", n: "5420333322221116",moneda: "u$s"}, //CC EN DOLARES
     {t: "01", n: "4444333322221117",moneda: "$"},   //CC EN PESOS
     {t: "12", n: "4444433322221117",moneda: "u$s"},   //CE EN PESOS
+    {t: "21", n: "4644433322221117",moneda: "u$s"},   //CE EN PESOS
+    {t: "22", n: "4674433322221117",moneda: "u$s"},   //CE EN PESOS
 ]
 
 const cuentas_dolares = [
@@ -63,5 +65,27 @@ const ndctools = {
     }
 }
 
+const initial01 = {
+    "cf":"RIOP",
+    "tf":"BSTN",
+    "d":"N",
+    "ctas":[
+        {
+            "t":"01",
+            "n":"000000603896       ",
+            "e":"1"
+        },
+        {
+            "t":"11",
+            "n":"201001001125       ",
+            "e":"3"
+        },
+        {
+            "t":"11",
+            "n":"000000000998       ",
+            "e":"1"
+        },
+    ]
+}
 
 module.exports = {stateDataInicial, cuentas, Vars, CheckDevice, cuentas_dolares, ndctools};

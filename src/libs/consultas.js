@@ -1,3 +1,5 @@
+const {Vars, CheckDevice} = require("./utils/globals")
+
 var Consultas = {
 	Ticket:{
 		Metadata:{
@@ -221,8 +223,8 @@ var Consultas = {
 
 	setConsultaSaldo : function(stateData){
 		var imprime = Vars.get("imprime") == true ? true : false ;
-		var cuentas = Vars.get("cuentas");
-		var cta_indice = Vars.get("cta_indice");
+		var cuentas = Vars.get("cuentas",[]);
+		var cta_indice = Vars.get("cta_indice",0);
 		Vars.set("indice_consulta", cta_indice)
 		var opcode_pesos = {
 			"true" : "ABA  C  ", //imprime ticket
@@ -250,12 +252,11 @@ var Consultas = {
 			stateData.properties.buffer_B = cuentas[0].t;
 			stateData.properties.buffer_C = cuentas[0].n;
 		}
-
-
+		return stateData
     },
 
 	setConsultaSaldoTc : function(stateData){
-		var indice = Vars.get("cta_index",1);
+		var indice = Vars.get("cta_index",0);
 		var idioma = Vars.get("idioma","ESP");
 
 		var opcode = {
@@ -282,6 +283,7 @@ var Consultas = {
 		stateData.properties.opcode  = opcode[idioma][indice];	
 		// stateData.properties.buffer_B = tipo[indice];
 		// stateData.properties.buffer_C = "0000000000000000000";
+		return stateData
     },
 
     setConsultaSaldoRias:function(stateData){
@@ -304,11 +306,11 @@ var Consultas = {
 				
 
 		stateData.properties.opcode  = opcode[imprime][indice];
-
+		return stateData
     },
 
     setConsultaSaldoLink : function(stateData){
-		var indice = Vars.get("tipo_cta_link");
+		var indice = Vars.get("tipo_cta_link",0);
 
 		var opcode_pesos = [
 			"BCD     ",
@@ -323,6 +325,7 @@ var Consultas = {
 		stateData.properties.opcode  = opcode_pesos[indice];	
 		stateData.properties.buffer_B = tipo[indice];
 		stateData.properties.buffer_C = "0000000000000000000";
+		return stateData
     },
 
 	setConsultaSaldoAnses : function(stateData){
@@ -344,6 +347,7 @@ var Consultas = {
 		} else {
 			stateData.properties.buffer_C = "0000000000000000000";
 		}
+		return stateData
     },
 
     setConsultaCBU : function(stateData){
@@ -378,8 +382,7 @@ var Consultas = {
 			stateData.properties.buffer_B = cuentas[0].t;
 			stateData.properties.buffer_C = cuentas[0].n;
 		}
-
-
+		return stateData
     },
 
     setConsultaCBUAnses : function(stateData){
@@ -393,6 +396,7 @@ var Consultas = {
 		stateData.properties.opcode  = opcode_pesos[imprime];
 		stateData.properties.buffer_B = "11";
 		stateData.properties.buffer_C = "0000000000000000000";
+		return stateData
     },
 
 	setConsultaUMov : function(stateData){
@@ -427,7 +431,7 @@ var Consultas = {
 			stateData.properties.buffer_B = cuentas[0].t;
 			stateData.properties.buffer_C = cuentas[0].n;
 		}
-
+		return stateData
 		//console.log("el opcode");
 		//console.log(stateData.properties.opcode);
     },
@@ -444,7 +448,7 @@ var Consultas = {
 		stateData.properties.opcode  = opcode_pesos[imprime];
 		stateData.properties.buffer_B = "11";
 		stateData.properties.buffer_C = "0000000000000000000";
-
+		return stateData
 		//console.log("el opcode");
 		//console.log(stateData.properties.opcode);
     },
@@ -481,7 +485,7 @@ var Consultas = {
 			stateData.properties.buffer_B = cuentas[0].t;
 			stateData.properties.buffer_C = cuentas[0].n;
 		}
-
+		return stateData
 		//console.log("el opcode");
 		//console.log(stateData.properties.opcode);
     },
@@ -498,12 +502,13 @@ var Consultas = {
 		stateData.properties.opcode  = opcode_pesos[imprime];
 		stateData.properties.buffer_B = "11";
 		stateData.properties.buffer_C = "0000000000000000000";
+		return stateData
     },
 
     setConsultaLimitePagos : function(stateData){
 		var imprime = Vars.get("imprime") == true ? true : false ;
 		var cuentas = Vars.get("cuentas");
-		var cta_indice = Vars.get("cta_indice");
+		var cta_indice = Vars.get("cta_indice",0);
 		Vars.set("indice_consulta", cta_indice)
 		var tipo_menu = Vars.get("tipo_menu")
 		var opcode_anses = {
@@ -547,7 +552,7 @@ var Consultas = {
 			stateData.properties.buffer_B = cuentas[cta_indice].t;
 			stateData.properties.buffer_C = cuentas[cta_indice].n;
 		}
-
+		return stateData
     },
 
     setConsultaLimiteCompras : function(stateData){
@@ -562,6 +567,7 @@ var Consultas = {
 		stateData.properties.opcode  = opcode_pesos[imprime];
 		stateData.properties.buffer_B = "11";
 		stateData.properties.buffer_C = "0000000000000000000";
+		return stateData
     },
 
 	procesar_saldo : function(){
@@ -898,3 +904,5 @@ var Consultas = {
 		return data
 	}
 }
+
+module.exports = Consultas;

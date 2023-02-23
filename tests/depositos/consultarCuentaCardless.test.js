@@ -36,7 +36,7 @@ test('Setear Consulta Cuenta Cardless Depositos - Banco Destino Conocido - Tipo 
     expect(JSON.stringify(Depositos.consultarCuentaCardless(stateDataInicial))).toBe(JSON.stringify(stateData));
 });
 
-test('Setear Consulta Cuenta Cardless Depositos - Banco Destino Conocido - Tipo cuenta 21 - Send Track en true', () => {
+test('Setear Consulta Cuenta Cardless Depositos - Banco Destino Conocido - Tipo cuenta 12 - Send Track en true', () => {
     var stateData = {
         properties: {
             opcode: "D A G   ",
