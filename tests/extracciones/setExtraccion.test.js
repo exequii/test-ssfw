@@ -41,7 +41,7 @@ test('Setear Extraccion - CA Pesos => Dolares - Imprime ticket - DEBITO DOMESTIC
         properties: {
             opcode: "A D CC  ",
             buffer_B: "11",
-            buffer_C: "",
+            buffer_C: "4520333322221112",
             amount_buffer: "000000001234",
         },
     }
