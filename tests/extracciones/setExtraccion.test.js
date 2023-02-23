@@ -41,7 +41,7 @@ test('Setear Extraccion - CA Pesos => Dolares - Imprime ticket - DEBITO DOMESTIC
         properties: {
             opcode: "A D CC  ",
             buffer_B: "11",
-            buffer_C: "4520333322221112",
+            buffer_C: "",
             amount_buffer: "000000001234",
         },
     }
@@ -58,7 +58,7 @@ test('Setear Extraccion - CA Dolares => Pesos - Imprime ticket - DEBITO DOMESTIC
     var stateData = {
         properties: {
             opcode: "A D BC  ",
-            buffer_B: "21",
+            buffer_B: "12",
             buffer_C: "4520333322221114",
             amount_buffer: "000000001234",
         },
@@ -76,7 +76,7 @@ test('Setear Extraccion - CA Dolares => Dolares - Imprime ticket - DEBITO DOMEST
     var stateData = {
         properties: {
             opcode: "D A BC  ",
-            buffer_B: "21",
+            buffer_B: "12",
             buffer_C: "4520333322221114",
             amount_buffer: "000000001234",
         },
@@ -130,7 +130,7 @@ test('Setear Extraccion - CA Dolares => Pesos - No Imprime ticket - DEBITO DOMES
     var stateData = {
         properties: {
             opcode: "A D BD  ",
-            buffer_B: "21",
+            buffer_B: "12",
             buffer_C: "4520333322221114",
             amount_buffer: "000000001234",
         },
@@ -148,7 +148,7 @@ test('Setear Extraccion - CA Dolares => Dolares - No Imprime ticket - DEBITO DOM
     var stateData = {
         properties: {
             opcode: "D A BD  ",
-            buffer_B: "21",
+            buffer_B: "12",
             buffer_C: "4520333322221114",
             amount_buffer: "000000001234",
         },
