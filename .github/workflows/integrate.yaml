@@ -2,9 +2,7 @@ name: Integracion Continua del Proyecto de Testing de la Aplicacion de SSFramewo
 
 on:
   push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
